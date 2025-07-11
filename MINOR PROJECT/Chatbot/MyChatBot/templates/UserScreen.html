@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MummyMate</title>
+  <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+  <link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" media="screen" />
+  <script src="https://kit.fontawesome.com/f4f0cf6a13.js" crossorigin="anonymous"></script>
+  <script>
+  function displayFullName() {
+  var request = new XMLHttpRequest();
+  var input = document.getElementById("t2").value;
+  var chatBox = document.getElementById("t1");
+  if (input.trim() === "") {
+  alert("Please enter a message.");
+  return; // Prevent the request if input is empty
+  }
+  // Add user message to chat box
+  chatBox.value += "You: " + input + "\n";
+  chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the latest message
+  // Send the request to the backend
+  request.open("GET", "http://127.0.0.1:8000/ChatData?mytext=" + encodeURIComponent(input), true);
+  request.onreadystatechange = function() {
+  if (this.readyState === 4 && this.status === 200) {
+    var responseText = this.responseText;
+    chatBox.value += "Chatbot: " + responseText + "\n";
+    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the latest message
+  }
+  };
+  request.send();
+  }
+  </script>
+</head>
+<body class="main">
+  <header>
+   <div class="logo">MummyMate <i class="fa-regular fa-heart"></i></div>
+    <nav>
+      <ul>
+        <li><i class="fa-solid fa-house"></i> <a href="{% url 'MyChatBot' %}">Home</a></li>
+        <li><i class="fa-solid fa-arrow-right-from-bracket"></i> <a href="{% url 'Logout' %}">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="page">
+      <div class="post">
+         <h2 class="title">Chat with MummyMate AI Chatbot</h2>
+          <div class="menu"><br>
+            <p><img src="./static/images/pic2.jpg" alt="chatbot image"></p>
+            <textarea name="t1" id="t1" rows="20" cols="80" readonly></textarea>
+            <input type="text" name="t2" id="t2" size="60" />
+            <button type="button" onclick="displayFullName()">Let's Chat</button>
+          </div>
+      </div>
+  </div>
+</body>
+</html>

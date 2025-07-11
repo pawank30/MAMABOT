@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MummyMate AI Chatbot</title>
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+    <link href="{% static 'default.css' %}"rel="stylesheet"type="text/css"media="screen"/>
+    <script src="https://kit.fontawesome.com/f4f0cf6a13.js"crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo">MummyMate <i class="fa-regular fa-heart"></i></div>
+      <nav>
+        <ul type="none">
+          <li><i class="fa-solid fa-house"></i> <a href="{% url 'MyChatBot' %}">Home</a></li>
+          <li><i class="fa-regular fa-circle-user"></i> <a href="{% url 'User' %}">Login</a></li>
+          <li><i class="fa-solid fa-bolt"></i> <a href="#features">About Us</a></li>
+          <li class=" Register"><a href="{% url 'Register' %}">Register Here</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="hero" id="MyChatBot">
+      <div class="hero-text">
+        <h1>Introducing <span>MummyMate</span> - Your AI Chatbot</h1>
+        <p>
+          Your partner in parenting, from bump to beyond. Get trusted advice, expert insights, and loving support - every step of the way, all at your fingertips!        </p>
+        <div class="buttons">
+          <a href="#features">Explore More</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="./static/images/pic.jpg" alt="MummyMate AI Chatbot Illustration"/>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <h2>Our Features</h2>
+      <p>
+        Explore the key features that make MummyMate the ultimate assistant for
+        you and your family.
+      </p>
+      <div class="cards">
+        <div class="card">
+          <h3>Pregnancy Support</h3>
+          <p>Get expert advice tailored to your pregnancy journey.</p>
+        </div>
+        <div class="card">
+          <h3>Family Planning</h3>
+          <p>Plan your family with AI-guided recommendations.</p>
+        </div>
+        <div class="card">
+          <h3>Health Tracking</h3>
+          <p>Monitor your health and wellness with ease.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        &copy; 2025 MummyMate. All Rights Reserved. |
+        <a href="#">Privacy Policy</a>
+      </p>
+    </footer>
+  </body>
+</html>

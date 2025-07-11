@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MummyMate</title>
+    <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+    <link href="{% static 'default.css' %}" rel="stylesheet" type="text/css" media="screen" />
+    <script src="https://kit.fontawesome.com/f4f0cf6a13.js" crossorigin="anonymous"></script>
+    <script>
+        function validate() {
+            var x = document.forms["f1"]["username"].value;
+            var y = document.forms["f1"]["password"].value;
+            if (x == null || x == "") {
+                window.alert("Username must be entered");
+                document.f1.username.focus();
+                return false;
+            }
+            if (y == null || y == "") {
+                window.alert("Password must be entered");
+                document.f1.password.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body class="main">
+    <header>
+        <div class="logo">MummyMate <i class="fa-regular fa-heart"></i></div>
+        <nav>
+            <ul>
+                <li><i class="fa-solid fa-house"></i> <a href="{% url 'MyChatBot' %}">Home</a></li>
+                <li class="Register"><a href="{% url 'Register' %}">Register Here</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="entry">
+		<h2 class="title">Login</h2>
+        <form name="f1" method="post" action="{% url 'UserLogin' %}" onsubmit="return validate()">
+            {% csrf_token %}
+            <br><br>
+            <table class="signup-form">
+                <tr>
+                    <th>Username</th>
+                    <td>&nbsp;&nbsp;<input type="text" name="username" value='' class="form-control"></td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td>&nbsp;&nbsp;<input type="password" name="password" value='' class="form-control"></td>
+                </tr>
+                <tr>
+					<td colspan="2" class="submit-row">
+                        <input type="submit" value="Login" class="submit-btn" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
